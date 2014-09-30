@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-echo "Synsaver 0.1 - Author: Chris Sivanich <csivanich@gmail.com>"
+echo "Synsaver 0.1 - Easily manage synaptics configurations"
+echo "Author: Chris Sivanich <csivanich@gmail.com>"
 echo "USAGE: synsaver action [arg1,arg2...]"
 echo "ACTIONS: $(./actions)"
 
