@@ -1,12 +1,12 @@
 
-#Synsave
+#Synsei
 Easily manage synaptics configurations, because who doesn't have a bunch lying around?
 
 Author: Chris Sivanich - csivanich@gmail.com
 
 ###Usage
 ```
-synsave <action> [arg1,arg2,...]
+synsei <action> [arg1,arg2,...]
 ```
 
 Actions
@@ -21,12 +21,12 @@ Actions
 ###Examples
 Save the current config to profile 'foo'
 ```
-synsave save foo
+synsei save foo
 ```
 
 Replace the current config with profile 'foo's
 ```
-synsave load foo
+synsei load foo
 ```
 
 more to come...

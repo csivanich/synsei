@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source debug
 profile_dir(){
-    readonly dir="$HOME"".config/synsaver/profiles/"
+    readonly dir="$HOME"".config/synsei/profiles/"
     if [ ! -d "$dir" ]; then
         e "Profile directory does not exist: '$dir'"
         exit 1
