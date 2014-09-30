@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+source functions
+source debug
+
+d "View starting"
+if profile=$(load_profile "$1");then
+    echo $profile | sort | perl -p -e 's/=/ -> /g'
+else
+    echo "Failed to load profile ($?)" >&2
+    exit 1
+fi

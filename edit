@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+source functions
+if ! profile_exists "$1"; then
+    echo "Profile '$1' could not be loaded" >&2
+    echo "Available profiles: $(list_profiles)"
+    exit 1
+fi
+
+if [ -z "$EDITOR" ]; then
+    e="vim"
+else
+    e=$EDITOR
+fi
+
+readonly e=$EDITOR
+
+$e $(pwd)/$file
+exit $?

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+readonly action=$1
+shift
+readonly args=$*
+
+if [ -z "$action" ]; then
+    ./help
+    exit $?
+fi
+
+is_valid_action() {
+    for a in $(./actions); do
+        if [ "$a" == "$1" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+if ! is_valid_action "$action";then
+    echo "Action $action is not valid"
+    exit 1
+fi
+
+if [ -x "$action" ]; then
+    ./$action $args
+else
+    echo "Action $action not executable"
+    exit 1
+fi

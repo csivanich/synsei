@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+source debug
+
+profile_exists(){
+    if [ -z "$1" ]; then
+        echo "No save file specified" >&2
+        return 1
+    fi
+
+    d "Checking if $1 exists"
+    readonly FILE="$1"
+    if [ ! -e "$FILE" ]; then
+        e "Save file \"$FILE\" does not exist"
+        return 2
+    fi
+
+    if [ ! -r "$FILE" ]; then
+        e "Save file \"$FILE\" is not readable :("
+        return 3
+    fi
+
+    d "Profile seems to exist"
+    return 0
+}
+
+list_actions(){
+    echo "help edit list load save view" | sort
+}
+
+list_profiles(){
+    readonly dir="~/.config/synsaver/profiles"
+    d "profile dir: $dir"
+    if [ ! -d "$dir" ]; then
+        echo "Creating profile dir at $dir"
+        mkdir -p "$dir"
+    fi
+    ls "$dir"
+    return $?
+}
+
+load_profile(){
+    d "Loading profile \"$1\""
+    if [ -z "$1" ];then
+        w "No profile given"
+        echo "Actions: $(list_profiles)" >&2
+        return 1
+    fi
+    profile_exists "$1"
+    if [ $? -eq 0 ]; then
+        d "Profile $1 exists"
+        profile=$(cat "$1")
+        return $?
+    else
+        d "Profile $1 does not exist ($?)"
+        return 1
+    fi
+}
+
+apply_settings() {
+    for p in $*; do
+        echo "Applying $p..."
+        synclient "$p" || exit 2
+    done
+}
+
