@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 source debug
+profile_dir(){
+    readonly dir="$HOME"".config/synsaver/profiles/"
+    if [ ! -d "$dir" ]; then
+        e "Profile directory does not exist: '$dir'"
+        exit 1
+    fi
+    d "Profile dir loaded ($dir)"
+    echo "$dir"
+}
 
 profile_exists(){
     if [ -z "$1" ]; then
@@ -8,7 +17,7 @@ profile_exists(){
     fi
 
     d "Checking if $1 exists"
-    readonly FILE="$1"
+    readonly FILE="$(profile_dir)""$1"
     if [ ! -e "$FILE" ]; then
         e "Save file \"$FILE\" does not exist"
         return 2
@@ -28,27 +37,36 @@ list_actions(){
 }
 
 list_profiles(){
-    readonly dir="~/.config/synsaver/profiles"
+    readonly dir=$(profile_dir)
     d "profile dir: $dir"
     if [ ! -d "$dir" ]; then
-        echo "Creating profile dir at $dir"
+        d "Creating profile dir at $dir"
         mkdir -p "$dir"
     fi
-    ls "$dir"
+    ls "$dir" | perl -p -e 's/\n/ /g'
     return $?
+}
+
+current_profile(){
+    remove_spaces "$(synclient -l | tail -n +2)" | sort
+}
+
+remove_spaces(){
+    d "Removing spaces"
+    echo "$1" | perl -p -e 's/ //g'
 }
 
 load_profile(){
     d "Loading profile \"$1\""
     if [ -z "$1" ];then
         w "No profile given"
-        echo "Actions: $(list_profiles)" >&2
+        echo "Profiles: $(list_profiles)" >&2
         return 1
     fi
     profile_exists "$1"
     if [ $? -eq 0 ]; then
         d "Profile $1 exists"
-        profile=$(cat "$1")
+        cat "$(profile_dir)""$1"
         return $?
     else
         d "Profile $1 does not exist ($?)"

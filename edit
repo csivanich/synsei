@@ -14,5 +14,5 @@ fi
 
 readonly e=$EDITOR
 
-$e $(pwd)/$file
+"$e" "$(profile_dir)/$1"
 exit $?

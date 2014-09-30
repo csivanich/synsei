@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
+source functions
 if [ -z "$1" ]; then
     echo "No save file specified" >&2
     exit 1
 fi
 
-FILE="$1"
+FILE="$(profile_dir)""$1"
+d "Begining save to '$FILE'"
 if [ ! -e "$FILE" ]; then
-    echo "Creating new save file \"$FILE\""
+    echo "Creating new profile \"$FILE\""
     touch "$FILE"
 fi
 
 if [ ! -w "$FILE" ]; then
-    echo "Save file \"$FILE\" is not writable :("
+    echo "File \"$FILE\" is not writable :("
     exit 1
 fi
 
-./list | perl -p -e 's/ //g' > "$FILE"
-
+remove_spaces "$(synclient -l )" > "$FILE"
 echo "Profile \"$FILE\" saved."
