@@ -19,7 +19,7 @@ is_valid_action() {
     return 1
 }
 
-if ! is_valid_action "$action";then
+if ! is_valid_action "$action"; then
     echo "Action $action is not valid"
     exit 1
 fi
