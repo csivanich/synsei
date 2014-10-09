@@ -6,13 +6,15 @@ if ! profile_exists "$1"; then
     exit 1
 fi
 
-if [ -z "$EDITOR" ]; then
-    e="vim"
+if [ -z "$2" ]; then
+    if [ -z "$EDITOR" ]; then
+        e="vim"
+    else
+        e=$EDITOR
+    fi
 else
-    e=$EDITOR
+    e=$2
 fi
-
-readonly e=$EDITOR
 
 "$e" "$(profile_dir)/$1"
 exit $?
