@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 source debug
+
+list_actions(){
+    echo "help edit list load save view" | sort
+}
+
 profile_dir(){
     readonly dir="$HOME"".config/synsei/profiles/"
     if [ ! -d "$dir" ]; then
@@ -32,9 +37,7 @@ profile_exists(){
     return 0
 }
 
-list_actions(){
-    echo "help edit list load save view" | sort
-}
+
 
 list_profiles(){
     readonly dir=$(profile_dir)

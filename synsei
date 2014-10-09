@@ -8,8 +8,10 @@ if [ -z "$action" ]; then
     exit $?
 fi
 
+source ./functions
+
 is_valid_action() {
-    for a in $(./actions); do
+    for a in $(list_actions); do
         if [ "$a" == "$1" ]; then
             return 0
         fi
