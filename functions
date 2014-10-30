@@ -37,8 +37,6 @@ profile_exists(){
     return 0
 }
 
-
-
 list_profiles(){
     readonly dir=$(profile_dir)
     d "profile dir: $dir"
@@ -46,7 +44,7 @@ list_profiles(){
         d "Creating profile dir at $dir"
         mkdir -p "$dir"
     fi
-    ls "$dir" | perl -p -e 's/\n/ /g'
+    ls "$dir" | sed -e 's/\n/ /g'
     return $?
 }
 
@@ -56,7 +54,7 @@ current_profile(){
 
 remove_spaces(){
     d "Removing spaces"
-    echo "$1" | perl -p -e 's/ //g'
+    echo "$1" | sed -e 's/ //g'
 }
 
 load_profile(){
