@@ -3,11 +3,11 @@
 source functions
 if profile_exists "$1"; then
 
-	f="$(profile_dir)""$1"
-	rm $f
-	echo "Profile deleted."
+    f="$(profile_dir)""$1"
+    rm $f
+    echo "Profile deleted."
 
 else
-	echo "Profile not found ($?)"
-	exit 1
+    echo "Profile not found ($?)"
+    exit 1
 fi

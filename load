@@ -3,10 +3,10 @@
 source functions
 if profile=$(load_profile "$1");then
 
-	profile=$(remove_spaces "$profile")
+    profile=$(remove_spaces "$profile")
 
-	apply_settings "$profile"
+    apply_settings "$profile"
 else
-	echo "Failed to load profile ($?)"
-	exit 1
+    echo "Failed to load profile ($?)"
+    exit 1
 fi

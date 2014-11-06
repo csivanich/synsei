@@ -2,20 +2,20 @@
 
 source functions
 if [ -z "$1" ]; then
-	echo "No save file specified" >&2
-	exit 1
+    echo "No save file specified" >&2
+    exit 1
 fi
 
 FILE="$(profile_dir)""$1"
 d "Begining save to '$FILE'"
 if [ ! -e "$FILE" ]; then
-	echo "Creating new profile \"$FILE\""
-	touch "$FILE"
+    echo "Creating new profile \"$FILE\""
+    touch "$FILE"
 fi
 
 if [ ! -w "$FILE" ]; then
-	echo "File \"$FILE\" is not writable :("
-	exit 1
+    echo "File \"$FILE\" is not writable :("
+    exit 1
 fi
 
 remove_spaces "$(synclient -l )" > "$FILE"

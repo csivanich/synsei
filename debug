@@ -3,18 +3,18 @@
 [ -z "$DEBUG" ] && DEBUG="0"
 
 debug() {
-	[ "$DEBUG" -eq "1" ] && return 0
-	return 1
+    [ "$DEBUG" -eq "1" ] && return 0
+    return 1
 }
 
 d() {
-	debug && echo "debug: $*" >&2
+    debug && echo "debug: $*" >&2
 }
 
 e() {
-	echo "error: $*" >&2
+    echo "error: $*" >&2
 }
 
 w() {
-	e "warn: $*" >&2
+    e "warn: $*" >&2
 }

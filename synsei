@@ -7,29 +7,29 @@ readonly args=$*
 source debug
 
 if [ -z "$action" ]; then
-	./help
-	exit $?
+    ./help
+    exit $?
 fi
 
 source ./functions
 
 is_valid_action() {
-	for a in $(list_actions); do
-		if [ "$a" == "$1" ]; then
-			return 0
-		fi
-	done
-	return 1
+    for a in $(list_actions); do
+        if [ "$a" == "$1" ]; then
+        	return 0
+        fi
+    done
+    return 1
 }
 
 if ! is_valid_action "$action"; then
-	echo "Action $action is not valid"
-	exit 1
+    echo "Action $action is not valid"
+    exit 1
 fi
 
 if [ -x "$action" ]; then
-	./$action $args
+    ./$action $args
 else
-	echo "Action $action not executable"
-	exit 1
+    echo "Action $action not executable"
+    exit 1
 fi

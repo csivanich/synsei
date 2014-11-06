@@ -2,29 +2,29 @@
 
 source functions
 if ! profile_exists "$1"; then
-	echo "Profile '$1' could not be loaded" >&2
-	echo "Available profiles: $(list_profiles)"
-	exit 1
+    echo "Profile '$1' could not be loaded" >&2
+    echo "Available profiles: $(list_profiles)"
+    exit 1
 fi
 
 if [ -z "$2" ]; then
-	if [ -z "$EDITOR" ]; then
+    if [ -z "$EDITOR" ]; then
 
-		if which nano; then
-			e="nano"
-		elif which pico; then
-			e="pico"
-		elif which vim; then
-			e="vim"
-		else
-			e="vi"
-		fi
+        if which nano; then
+        	e="nano"
+        elif which pico; then
+        	e="pico"
+        elif which vim; then
+        	e="vim"
+        else
+        	e="vi"
+        fi
 
-	else
-		e=$EDITOR
-	fi
+    else
+        e=$EDITOR
+    fi
 else
-	e=$2
+    e=$2
 fi
 
 "$e" "$(profile_dir)/$1"
