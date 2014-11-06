@@ -16,7 +16,7 @@ source ./functions
 is_valid_action() {
     for a in $(list_actions); do
         if [ "$a" == "$1" ]; then
-        	return 0
+            return 0
         fi
     done
     return 1

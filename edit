@@ -11,13 +11,13 @@ if [ -z "$2" ]; then
     if [ -z "$EDITOR" ]; then
 
         if which nano; then
-        	e="nano"
+            e="nano"
         elif which pico; then
-        	e="pico"
+            e="pico"
         elif which vim; then
-        	e="vim"
+            e="vim"
         else
-        	e="vi"
+            e="vi"
         fi
 
     else
