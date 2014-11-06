@@ -14,4 +14,5 @@ else
         exit 1
     fi
 fi
-echo $profile | sed -e 's/ /\n/g' -e 's/=/ -> /g'
+
+echo $profile | sed -e 's/ /\n/g' -e 's/=/ ... /g'
