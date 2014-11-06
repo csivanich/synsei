@@ -1,84 +1,87 @@
 #!/usr/bin/env bash
+
 source debug
 
 list_actions(){
-    echo "help edit list load save view" | sort
+	echo "help edit list load save view delete" | sort
 }
 
 profile_dir(){
-    readonly dir="$HOME"".config/synsei/profiles/"
-    if [ ! -d "$dir" ]; then
-        e "Profile directory does not exist: '$dir'"
-        exit 1
-    fi
-    d "Profile dir loaded ($dir)"
-    echo "$dir"
+	readonly dir="$HOME""/.config/synsei/profiles/"
+	if [ ! -d "$dir" ]; then
+		e "Profile directory does not exist: '$dir'"
+		exit 1
+	fi
+	d "Profile dir loaded ($dir)"
+	echo "$dir"
 }
 
 profile_exists(){
-    if [ -z "$1" ]; then
-        echo "No save file specified" >&2
-        return 1
-    fi
+	if [ -z "$1" ]; then
+		echo "No save file specified" >&2
+		return 1
+	fi
 
-    d "Checking if $1 exists"
-    readonly FILE="$(profile_dir)""$1"
-    if [ ! -e "$FILE" ]; then
-        e "Save file \"$FILE\" does not exist"
-        return 2
-    fi
+	d "Checking if $1 exists"
+	readonly FILE="$(profile_dir)""$1"
+	if [ ! -e "$FILE" ]; then
+		e "Save file \"$FILE\" does not exist"
+		return 2
+	fi
 
-    if [ ! -r "$FILE" ]; then
-        e "Save file \"$FILE\" is not readable :("
-        return 3
-    fi
+	if [ ! -r "$FILE" ]; then
+		e "Save file \"$FILE\" is not readable :("
+		return 3
+	fi
 
-    d "Profile seems to exist"
-    return 0
+	d "Profile seems to exist"
+	return 0
 }
 
 list_profiles(){
-    readonly dir=$(profile_dir)
-    d "profile dir: $dir"
-    if [ ! -d "$dir" ]; then
-        d "Creating profile dir at $dir"
-        mkdir -p "$dir"
-    fi
-    ls "$dir" | sed -e 's/\n/ /g'
-    return $?
+	readonly dir=$(profile_dir)
+	d "profile dir: $dir"
+	if [ ! -d "$dir" ]; then
+		d "Creating profile dir at $dir"
+		mkdir -p "$dir"
+	fi
+	ls "$dir" | sed -e 's/\n/ /g'
+	return $?
 }
 
 current_profile(){
-    remove_spaces "$(synclient -l | tail -n +2)" | sort
+	remove_spaces "$(synclient -l | grep =)" | sort
 }
 
 remove_spaces(){
-    d "Removing spaces"
-    echo "$1" | sed -e 's/ //g'
+	d "Removing spaces"
+
+	echo "$1" | tr -d '[[:blank:]]' | grep =
 }
 
 load_profile(){
-    d "Loading profile \"$1\""
-    if [ -z "$1" ];then
-        w "No profile given"
-        echo "Profiles: $(list_profiles)" >&2
-        return 1
-    fi
-    profile_exists "$1"
-    if [ $? -eq 0 ]; then
-        d "Profile $1 exists"
-        cat "$(profile_dir)""$1"
-        return $?
-    else
-        d "Profile $1 does not exist ($?)"
-        return 1
-    fi
+	d "Loading profile \"$1\""
+	if [ -z "$1" ];then
+		w "No profile given"
+		echo "Profiles: $(list_profiles)" >&2
+		return 1
+	fi
+	profile_exists "$1"
+	if [ $? -eq 0 ]; then
+		d "Profile $1 exists"
+		prof=$(cat "$(profile_dir)""$1")
+		remove_spaces "$prof" | sort
+		return $?
+	else
+		d "Profile $1 does not exist ($?)"
+		return 1
+	fi
 }
 
 apply_settings() {
-    for p in $*; do
-        echo "Applying $p..."
-        synclient "$p" || exit 2
-    done
+	for p in $*; do
+		echo "Applying $p ..."
+		synclient "$p" || exit 2
+	done
 }
 

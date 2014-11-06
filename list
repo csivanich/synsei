@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+
 source functions
 list_profiles

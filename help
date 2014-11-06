@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
-source functions
-echo "Synsei 0.1 - Easily manage synaptics configurations"
-echo ""
-echo "Usage: synsei <action> [arg1,arg2,...]"
-echo ""
-echo "Actions:"
-echo ""
-echo "help                      - Displays help page"
-echo "edit <profile> [editor]   - Edits a profile with $EDITOR or [editor]"
-echo "list                      - Lists all loadable profiles"
-echo "load <profile>            - Loads a profile into use"
-echo "save <profile>            - Saves the current config into a profile"
-echo "view [profile]            - Views a profile's config, otherwise views"
-echo "                            current synclient config"
+
+echo "
+Synsei 0.2 - Easily manage synaptics configurations
+
+Usage: synsei <action> [arg1,arg2,...]
+
+Actions:
+
+help                      - Displays help page
+edit <profile> [editor]   - Edits a profile with $EDITOR or [editor]
+list                      - Lists all loadable profiles
+load <profile>            - Loads a profile into use
+save <profile>            - Saves the current config into a profile
+delete <profile>          - Deletes a profile
+view [profile]            - Views a profile's config, otherwise views
+                            current synclient config
+"

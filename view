@@ -1,18 +1,18 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+
 source functions
-source debug
 
 d "View starting"
 if [ -z "$1" ]; then
-    d "Viewing current values"
-    profile=$(current_profile)
+	d "Viewing current values"
+	profile=$(current_profile)
 else
-    if profile=$(load_profile "$1");then
-        d "Loading profile '$1'"
-    else
-        echo "Failed to load profile ($?)" >&2
-        exit 1
-    fi
+	if profile=$(load_profile "$1");then
+		d "Loading profile '$1'"
+	else
+		echo "Failed to load profile ($?)" >&2
+		exit 1
+	fi
 fi
 
-echo $profile | sed -e 's/ /\n/g' -e 's/=/ ... /g'
+echo "$profile" | sed -e 's/ /\n/g' -e 's/=/ .... /g'
