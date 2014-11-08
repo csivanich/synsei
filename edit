@@ -8,6 +8,8 @@ if ! profile_exists "$1"; then
     exit 1
 fi
 
+profile="$1"
+
 shift
 
 if [ -z "$*" ]; then
@@ -28,5 +30,5 @@ else
     e=$@
 fi
 
-$e "$(profile_dir)/$1"
+$e "$(profile_dir)/$profile"
 exit $?
