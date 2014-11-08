@@ -3,13 +3,15 @@
 source functions
 if ! profile_exists "$1"; then
     echo "Profile '$1' could not be loaded" >&2
-    echo "Available profiles: $(list_profiles)"
+    echo "Available profiles:"
+    echo "$(list_profiles)"
     exit 1
 fi
 
-if [ -z "$2" ]; then
-    if [ -z "$EDITOR" ]; then
+shift
 
+if [ -z "$*" ]; then
+    if [ -z "$EDITOR" ]; then
         if which nano; then
             e="nano"
         elif which pico; then
@@ -19,13 +21,12 @@ if [ -z "$2" ]; then
         else
             e="vi"
         fi
-
     else
         e=$EDITOR
     fi
 else
-    e=$2
+    e=$@
 fi
 
-"$e" "$(profile_dir)/$1"
+$e "$(profile_dir)/$1"
 exit $?
