@@ -50,7 +50,7 @@ list_profiles(){
 }
 
 current_profile(){
-    remove_spaces "$(synclient -l | grep =)" | sort
+    remove_spaces "$(synclient -l | grep -E '[[:space:]]+[[:alnum:]]+[[:space:]]+= ([[:digit:]]|\.)+')" | sort
 }
 
 remove_spaces(){
