@@ -18,5 +18,5 @@ if [ ! -w "$FILE" ]; then
     exit 1
 fi
 
-remove_spaces "$(synclient -l )" > "$FILE"
+read_current_profile > "$FILE"
 echo "Profile \"$FILE\" saved."

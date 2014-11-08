@@ -49,14 +49,17 @@ list_profiles(){
     return $?
 }
 
-current_profile(){
-    remove_spaces "$(synclient -l | grep -E '[[:space:]]+[[:alnum:]]+[[:space:]]+= ([[:digit:]]|\.)+')" | sort
+read_current_profile(){
+    synclient -l | only_config_lines | remove_spaces
+}
+
+only_config_lines(){
+    grep -E '[[:space:]]+[[:alnum:]]+[[:space:]]+= ([[:digit:]]|\.)+'
 }
 
 remove_spaces(){
     d "Removing spaces"
-
-    echo "$1" | tr -d '[[:blank:]]' | grep =
+    tr -d '[[:blank:]]'
 }
 
 load_profile(){
@@ -69,13 +72,16 @@ load_profile(){
     profile_exists "$1"
     if [ $? -eq 0 ]; then
         d "Profile $1 exists"
-        prof=$(cat "$(profile_dir)""$1")
-        remove_spaces "$prof" | sort
+        read_profile "$1" | remove_spaces
         return $?
     else
         d "Profile $1 does not exist ($?)"
         return 1
     fi
+}
+
+read_profile(){
+    profile_exists "$1" && cat "$(profile_dir)""$1"
 }
 
 apply_settings() {
