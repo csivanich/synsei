@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 source functions
-if profile=$(read_profile "$1");then
-    apply_settings "$profile"
+
+if profile_exists "$1"; then
+    read_profile "$1" | apply_settings
 else
     echo "Failed to load profile ($?)"
     exit 1

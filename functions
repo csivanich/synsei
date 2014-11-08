@@ -23,7 +23,7 @@ profile_exists(){
     fi
 
     d "Checking if $1 exists"
-    readonly FILE="$(profile_dir)""$1"
+    FILE="$(profile_dir)""$1"
     if [ ! -e "$FILE" ]; then
         e "Profile \"$FILE\" does not exist"
         return 2
@@ -85,7 +85,7 @@ read_profile(){
 }
 
 apply_settings() {
-    for p in $*; do
+    while read p; do
         echo "Applying $p ..."
         synclient "$p" || exit 2
     done
