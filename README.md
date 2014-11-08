@@ -11,7 +11,7 @@ synsei <action> [arg1,arg2,...]
 
 Actions
 
-- ```delete``` <profile> - Deletes a profile
+- ```delete <profile> - Deletes a profile```
 - ```edit <profile> - Edits a profile with $EDITOR```
 - ```help - Displays help page```
 - ```list - Lists all loadable profiles```
