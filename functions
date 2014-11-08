@@ -18,19 +18,19 @@ profile_dir(){
 
 profile_exists(){
     if [ -z "$1" ]; then
-        echo "No save file specified" >&2
+        d "No profile specified"
         return 1
     fi
 
     d "Checking if $1 exists"
     readonly FILE="$(profile_dir)""$1"
     if [ ! -e "$FILE" ]; then
-        e "Save file \"$FILE\" does not exist"
+        e "Profile \"$FILE\" does not exist"
         return 2
     fi
 
     if [ ! -r "$FILE" ]; then
-        e "Save file \"$FILE\" is not readable :("
+        e "Profile \"$FILE\" is not readable :("
         return 3
     fi
 
