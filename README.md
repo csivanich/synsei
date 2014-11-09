@@ -44,5 +44,3 @@ Delete profile 'foo'
 ```bash
 synsei delete foo
 ```
-
-> Written with [StackEdit](https://stackedit.io/).
