@@ -5,19 +5,22 @@ Easily manage synaptics configurations, because who doesn't have a bunch lying a
 Author: Chris Sivanich - csivanich@gmail.com
 
 ###Usage
+
 ```
 synsei <action> [arg1 arg2 ...]
 ```
 
-Actions
+**Actions**
 
-- `delete <profile> - Deletes a profile`
-- `edit <profile> - Edits a profile with $EDITOR or given editor`
-- `help - Displays help page`
-- `list - Lists all loadable profiles`
-- `load <profile> - Loads a profile into use`
-- `save <profile> - Saves the current config into a profile`
-- `view [profile] - Views a profile's config, otherwise views current synclient config`
+syntax             | function
+------------------ | ---------------------
+`delete <profile>` | Deletes a profile
+`edit <profile>`   | Edits a profile with $EDITOR or given editor
+`help`             | Displays help page
+`list`             | Lists all loadable profiles
+`load <profile>`   | Loads a profile into use
+`save <profile>`   | Saves the current config into a profile
+`view [profile]`   | Views a profile's config, otherwise views current synclient config
 
 ###Examples
 
