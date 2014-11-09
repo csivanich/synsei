@@ -3,7 +3,7 @@
 echo "
 Synsei 0.2 - Easily manage synaptics configurations
 
-Usage: synsei <action> [arg1,arg2,...]
+Usage: synsei <action> [arg1 arg2 ...]
 
 Actions:
 

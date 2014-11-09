@@ -81,7 +81,7 @@ load_profile(){
 }
 
 read_profile(){
-    profile_exists "$1" && cat "$(profile_dir)""$1"
+    profile_exists "$1" && cat "$(profile_dir)""$1" | sed -E 's/(#|--|;|\/\/).*//g' | grep '=' | sed -E 's/[[:blank:]]+//g'
 }
 
 apply_settings() {
