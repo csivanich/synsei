@@ -6,19 +6,18 @@ Author: Chris Sivanich - csivanich@gmail.com
 
 ###Usage
 ```
-Usage: synsei <action> [arg1 arg2 ...]
-
-Actions:
-
-help                      - Displays help page
-edit <profile> [editor]   - Edits a profile with  or [editor]
-list                      - Lists all loadable profiles
-load <profile>            - Loads a profile into use
-save <profile>            - Saves the current config into a profile
-delete <profile>          - Deletes a profile
-view [profile]            - Views a profile's config, otherwise views
-                            current synclient config
+synsei <action> [arg1 arg2 ...]
 ```
+
+Actions
+
+- `delete <profile> - Deletes a profile`
+- `edit <profile> - Edits a profile with $EDITOR or given editor`
+- `help - Displays help page`
+- `list - Lists all loadable profiles`
+- `load <profile> - Loads a profile into use`
+- `save <profile> - Saves the current config into a profile`
+- `view [profile] - Views a profile's config, otherwise views current synclient config`
 
 ###Examples
 
