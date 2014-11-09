@@ -4,7 +4,7 @@ source functions
 if ! profile_exists "$1"; then
     echo "Profile '$1' could not be loaded" >&2
     echo "Available profiles:"
-    echo "$(list_profiles)"
+    list_profiles
     exit 1
 fi
 
