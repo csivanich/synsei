@@ -3,8 +3,9 @@
 Easily manage synaptics configurations, because who doesn't have a bunch lying around?
 
 Author: Chris Sivanich - csivanich@gmail.com
+GitHub: [csivanich/synsei](https://github.com/csivanich/synsei)
 
-###Usage
+##Usage
 
 ```
 synsei <action> [arg1 arg2 ...]
@@ -22,7 +23,7 @@ syntax             | function
 `save <profile>`   | Saves the current config into a profile
 `view [profile]`   | Views a profile's config, otherwise views current synclient config
 
-###Examples
+##Examples
 
 Edit the profile 'foo' with `vim -- `
 ```bash
