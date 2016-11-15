@@ -1,5 +1,6 @@
+![Synsei](header.png)
+------
 
-#Synsei
 Easily manage synaptics configurations, because who doesn't have a bunch lying around?
 
 Author: Chris Sivanich - csivanich@gmail.com
